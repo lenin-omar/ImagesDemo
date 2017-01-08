@@ -16,11 +16,17 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * Created by Omar F Martinez on 1/7/17.
+ * Created by Omar F Mtz on 9/17/15.
  */
-
 public class TextureCube {
 
+    float[] texCoords = { // Texture coords for the above face
+            0.0f, 1.0f,  // A. left-bottom
+            1.0f, 1.0f,  // B. right-bottom
+            0.0f, 0.0f,  // C. left-top
+            1.0f, 0.0f   // D. right-top
+    };
+    int[] textureIDs = new int[1];   // Array for 1 texture-ID
     private FloatBuffer vertexBuffer; // Buffer for vertex-array
     private FloatBuffer texBuffer;    // Buffer for texture-coords-array
     private float[] vertices = { // Vertices for a face
@@ -29,13 +35,6 @@ public class TextureCube {
             -1.0f, 1.0f, 0.0f,  // 2. left-top-front
             1.0f, 1.0f, 0.0f   // 3. right-top-front
     };
-    float[] texCoords = { // Texture coords for the above face
-            0.0f, 1.0f,  // A. left-bottom
-            1.0f, 1.0f,  // B. right-bottom
-            0.0f, 0.0f,  // C. left-top
-            1.0f, 0.0f   // D. right-top
-    };
-    int[] textureIDs = new int[1];   // Array for 1 texture-ID
 
     // Constructor - Set up the buffers
     public TextureCube() {
@@ -109,7 +108,7 @@ public class TextureCube {
         // Set up texture filters
         gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
         gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
-        // Construct an input stream to texture image
+        // Construct an input stream to texture image "res\drawable\ic_lancher.png"
         InputStream istream = context.getResources().openRawResource(R.raw.androidicon);
         Bitmap bitmap;
         try {
@@ -125,5 +124,4 @@ public class TextureCube {
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
         bitmap.recycle();
     }
-
 }

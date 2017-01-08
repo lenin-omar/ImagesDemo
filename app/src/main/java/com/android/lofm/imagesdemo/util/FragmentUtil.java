@@ -25,7 +25,6 @@ public class FragmentUtil {
         }
         return fragment;
     }
-
 //    public static Fragment replaceFragmentToContent(FragmentActivity activity, String tag, Bundle extras, boolean isSecondaryNavigation) {
 //        FragmentManager fm = activity.getSupportFragmentManager();
 //        FragmentTransaction ft = fm.beginTransaction();

@@ -13,7 +13,11 @@ import com.android.lofm.imagesdemo.R;
  * Created by Omar F Martinez on 1/7/17.
  */
 public class ImageAdapter extends BaseAdapter {
+
     private Context context;
+    // references to our images
+    //TODO: Stop using this
+    private Integer[] thumbIds = {R.drawable.sample_0, R.drawable.sample_1, R.drawable.sample_2, R.drawable.sample_3, R.drawable.sample_4, R.drawable.sample_5, R.drawable.sample_6, R.drawable.sample_7, R.drawable.sample_0, R.drawable.sample_1, R.drawable.sample_2, R.drawable.sample_3, R.drawable.sample_4, R.drawable.sample_5, R.drawable.sample_6, R.drawable.sample_7};
 
     public ImageAdapter(Context context) {
         this.context = context;
@@ -43,21 +47,7 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-
         imageView.setImageResource(thumbIds[position]);
         return imageView;
     }
-
-    // references to our images
-    //TODO: Stop using this
-    private Integer[] thumbIds = {
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7
-    };
 }

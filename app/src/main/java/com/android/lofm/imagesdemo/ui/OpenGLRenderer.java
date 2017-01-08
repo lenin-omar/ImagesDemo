@@ -8,15 +8,14 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * Created by Omar F Martinez on 1/7/17.
+ * Created by Omar F Mtz on 1/7/17/.
  */
-
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
 
-    private Context context;   // Application context needed to read image
-    private TextureCube cube;
     private static float angleCube = 0;     // rotational angle in degree for cube
     private static float speedCube = -2.0f; // rotational speed for cube
+    private Context context;   // Application context needed to read image
+    private TextureCube cube;
 
     // Constructor
     public OpenGLRenderer(Context context) {
@@ -58,7 +57,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         // Render the Cube
         gl.glLoadIdentity();                  // Reset the current model-view matrix
-        gl.glTranslatef(0.0f, 0.0f, -8.0f);   // Translate into the screen
+        gl.glTranslatef(0.0f, 0.0f, -10.0f);   // Translate into the screen
         gl.glRotatef(angleCube, 0.1f, 1.0f, 0.5f); // Rotate
         cube.draw(gl);
         // Update the rotational angle after each refresh.

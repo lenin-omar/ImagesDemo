@@ -1,6 +1,5 @@
 package com.android.lofm.imagesdemo.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +14,9 @@ import com.android.lofm.imagesdemo.R;
 import com.android.lofm.imagesdemo.adapter.ImageAdapter;
 import com.android.lofm.imagesdemo.util.FragmentUtil;
 
+/**
+ * Created by Omar F Martinez on 1/7/17.
+ */
 public class GridFragment extends Fragment {
 
     public static final String TAG = GridFragment.class.getName();
@@ -32,6 +34,7 @@ public class GridFragment extends Fragment {
         gridview = (GridView) view.findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(getContext()));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ShowImageDetail(position, view);
             }
@@ -45,7 +48,6 @@ public class GridFragment extends Fragment {
         ImageView imageView = (ImageView) ((ViewGroup) view).getChildAt(0);
         int[] screenLocation = new int[2];
         imageView.getLocationOnScreen(screenLocation);
-
 //        Intent showDetailFragment = new Intent(getContext(), ImageDetailFragment.class);
         int orientation = getResources().getConfiguration().orientation;
 //        showDetailFragment.
@@ -56,7 +58,6 @@ public class GridFragment extends Fragment {
 //                putExtra(PACKAGE + ".width", imageView.getWidth()).
 //                putExtra(PACKAGE + ".height", imageView.getHeight());
 //        startActivity(showDetailFragment);
-
         Bundle bundle = new Bundle();
         bundle.putInt(PACKAGE + ".orientation", orientation);
         bundle.putInt(PACKAGE + ".left", screenLocation[0]);
@@ -64,7 +65,6 @@ public class GridFragment extends Fragment {
         bundle.putInt(PACKAGE + ".width", imageView.getWidth());
         bundle.putInt(PACKAGE + ".height", imageView.getHeight());
         FragmentUtil.addFragmentToContent(getActivity(), ImageDetailFragment.TAG, bundle);
-
         // Override transitions: we don't want the normal window animation in addition to our custom one
         getActivity().overridePendingTransition(0, 0);
 
