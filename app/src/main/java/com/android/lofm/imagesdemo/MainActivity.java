@@ -1,30 +1,24 @@
 package com.android.lofm.imagesdemo;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.Toast;
-
-import com.android.lofm.imagesdemo.adapter.ImageAdapter;
+import com.android.lofm.imagesdemo.fragment.GridFragment;
 
 public class MainActivity extends AppCompatActivity {
-
-    private GridView gridview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                //TODO: Expand image and go to next screen
-            }
-        });
+        //TODO: Move this to a different class (custom API/SDK)
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = Fragment.instantiate(this, GridFragment.TAG);
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragmentHolder, fragment, GridFragment.TAG);
+        ft.commit();
     }
 }
