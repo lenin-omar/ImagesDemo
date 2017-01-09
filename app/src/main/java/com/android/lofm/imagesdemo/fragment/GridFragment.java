@@ -1,20 +1,19 @@
 package com.android.lofm.imagesdemo.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.lofm.imagesdemo.R;
 import com.android.lofm.imagesdemo.adapter.ImageAdapter;
 import com.android.lofm.imagesdemo.presenter.GridPresenter;
-import com.android.lofm.imagesdemo.util.FragmentUtil;
+import com.android.lofm.imagesdemo.util.GalleryUtil;
 import com.android.lofm.imagesdemo.util.ImageListener;
 
 /**
@@ -45,27 +44,13 @@ public class GridFragment extends Fragment implements ImageListener {
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
     public void onImageClicked(View view, int position) {
-        //TODO: Expand image and go to next screen
         ImageView imageView = (ImageView) view;
-        Toast.makeText(getContext(), "position: " + position, Toast.LENGTH_SHORT).show();
-        //
         int[] screenLocation = new int[2];
         imageView.getLocationOnScreen(screenLocation);
         Bundle bundle = new Bundle();
-        bundle.putInt(PACKAGE + ".left", screenLocation[0]);
-        bundle.putInt(PACKAGE + ".top", screenLocation[1]);
-        bundle.putInt(PACKAGE + ".width", imageView.getWidth());
-        bundle.putInt(PACKAGE + ".height", imageView.getHeight());
-        bundle.putString(PACKAGE + ".image", "");
-        //
-        FragmentUtil.replaceFragmentToContent(getActivity(), ImageDetailFragment.TAG, bundle, imageView);
+        bundle.putInt(PACKAGE + ".image", thumbIds[position]);
+        GalleryUtil.replaceFragmentToContent(getActivity(), ImageDetailFragment.TAG, bundle, imageView, this);
     }
 
 }

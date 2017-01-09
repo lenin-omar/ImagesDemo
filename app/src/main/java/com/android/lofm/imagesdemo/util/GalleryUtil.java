@@ -7,19 +7,20 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.transition.Fade;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.android.lofm.imagesdemo.R;
+import com.android.lofm.imagesdemo.fragment.GridFragment;
 import com.android.lofm.imagesdemo.ui.DetailsTransition;
 
 /**
  * Created by Omar F Martinez on 1/7/17.
  */
 
-public class FragmentUtil {
+public class GalleryUtil {
 
-    public static Fragment addFragmentToContent(FragmentActivity activity, String tag, Bundle extras) { //Used to add fragment to screen when app is launched
+    public static Fragment showGallery(FragmentActivity activity, Bundle extras) { //Used to add fragment to screen when app is launched
+        String tag = GridFragment.TAG;
         FragmentManager fm = activity.getSupportFragmentManager();
         Fragment fragment = null;
         if (fm.findFragmentByTag(tag) == null) {
@@ -31,18 +32,16 @@ public class FragmentUtil {
         return fragment;
     }
 
-    public static Fragment replaceFragmentToContent(FragmentActivity activity, String tag, Bundle extras, ImageView imageView) {
+    public static Fragment replaceFragmentToContent(FragmentActivity activity, String tag, Bundle extras, ImageView imageView, Fragment currentFragment) {
         FragmentManager fm = activity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction().addSharedElement(imageView, "expandImage");
         Fragment fragment = Fragment.instantiate(activity, tag, extras);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             fragment.setSharedElementEnterTransition(new DetailsTransition());
             fragment.setEnterTransition(new Fade());
             fragment.setExitTransition(new Fade());
             fragment.setSharedElementReturnTransition(new DetailsTransition());
         }
-
         ft.replace(R.id.fragmentHolder, fragment, tag);
         ft.addToBackStack(null);
         ft.commit();

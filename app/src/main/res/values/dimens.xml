@@ -4,10 +4,10 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- Preview (grid item) dimensions -->
-    <dimen name="preview_size">120dp</dimen>
-    <dimen name="preview_padding">8dp</dimen>
+    <dimen name="preview_size">100dp</dimen>
+    <dimen name="preview_padding">4dp</dimen>
 
     <!-- Details dimensions -->
-    <dimen name="details_image_size">240dp</dimen>
-    <dimen name="details_top_spacing">48dp</dimen>
+    <dimen name="details_image_size">350dp</dimen>
+    <dimen name="details_top_spacing">24dp</dimen>
 </resources>

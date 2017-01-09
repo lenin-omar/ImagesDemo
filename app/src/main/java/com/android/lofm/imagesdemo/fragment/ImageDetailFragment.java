@@ -27,12 +27,7 @@ public class ImageDetailFragment extends Fragment {
         imageViewDetail = (ImageView) view.findViewById(R.id.imageViewDetail);
         //Retrieve the data to display
         Bundle bundle = getArguments();
-        final int thumbnailTop = bundle.getInt(PACKAGE + ".top");
-        final int thumbnailLeft = bundle.getInt(PACKAGE + ".left");
-        final int thumbnailWidth = bundle.getInt(PACKAGE + ".width");
-        final int thumbnailHeight = bundle.getInt(PACKAGE + ".height");
-        imageViewDetail.setImageURI(Uri.parse(bundle.getString(PACKAGE + ".image", "")));
-        imageViewDetail.setImageResource(R.drawable.sample_0);  //To test
+        imageViewDetail.setImageResource(bundle.getInt(PACKAGE + ".image", R.mipmap.ic_launcher));
         return view;
     }
 
