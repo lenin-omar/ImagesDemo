@@ -3,13 +3,14 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:id="@+id/pictureHolder"
              tools:context="com.android.lofm.imagesdemo.fragment.ImageDetailFragment">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageView"/>
+        android:transitionName="expandImage"
+        android:id="@+id/imageViewDetail"/>
 
 </FrameLayout>

@@ -1,53 +1,75 @@
 package com.android.lofm.imagesdemo.adapter;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.android.lofm.imagesdemo.R;
+import com.android.lofm.imagesdemo.util.ImageListener;
 
 /**
  * Created by Omar F Martinez on 1/7/17.
  */
-public class ImageAdapter extends BaseAdapter {
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
 
     private Context context;
-    // references to our images
-    //TODO: Stop using this
-    private Integer[] thumbIds = {R.drawable.sample_0, R.drawable.sample_1, R.drawable.sample_2, R.drawable.sample_3, R.drawable.sample_4, R.drawable.sample_5, R.drawable.sample_6, R.drawable.sample_7, R.drawable.sample_0, R.drawable.sample_1, R.drawable.sample_2, R.drawable.sample_3, R.drawable.sample_4, R.drawable.sample_5, R.drawable.sample_6, R.drawable.sample_7};
+    private final ImageListener imageListener;
+    private Integer[] thumbIds;
 
-    public ImageAdapter(Context context) {
+    public ImageAdapter(Context context, ImageListener imageListener) {
         this.context = context;
+        this.imageListener = imageListener;
     }
 
-    public int getCount() {
-        return thumbIds.length;
+    public void setThumbIds(Integer[] thumbIds) {
+        this.thumbIds = thumbIds;
     }
 
-    public Object getItem(int position) {
-        return null;
+    @Override
+    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
+        ImageViewHolder imageViewHolder = new ImageViewHolder(view);
+        return imageViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(final ImageViewHolder holder, final int position) {
+        holder.initialImage.setImageResource(thumbIds[position]);
+        ViewCompat.setTransitionName(holder.initialImage, String.valueOf(position) + "_image");
+
+//        holder.initialImage.setLayoutParams(new RecyclerView.LayoutParams(250, 250));
+//        holder.initialImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//        holder.initialImage.setPadding(10, 10, 10, 10);
+
+        holder.initialImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageListener.onImageClicked(holder.initialImage, position);
+            }
+        });
     }
 
     public long getItemId(int position) {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(250, 250));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(1, 1, 1, 1);
-        } else {
-            imageView = (ImageView) convertView;
+    @Override
+    public int getItemCount() {
+        return thumbIds.length;
+    }
+
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
+
+        protected ImageView initialImage;
+
+        public ImageViewHolder(View itemView) {
+            super(itemView);
+            initialImage = (ImageView) itemView.findViewById(R.id.initialImage);
         }
-        imageView.setImageResource(thumbIds[position]);
-        return imageView;
+
     }
 }
