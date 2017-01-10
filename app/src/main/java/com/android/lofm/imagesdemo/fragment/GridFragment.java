@@ -3,7 +3,6 @@ package com.android.lofm.imagesdemo.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +32,7 @@ public class GridFragment extends Fragment implements ImageListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_grid, container, false);
         gridPresenter = new GridPresenter(getContext());
+        //gridPresenter.getImages("endpoint");
         thumbIds = gridPresenter.getImages();
         //Setup recycler view and adapter
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);

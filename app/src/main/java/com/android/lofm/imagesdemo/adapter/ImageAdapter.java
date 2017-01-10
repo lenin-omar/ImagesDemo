@@ -16,8 +16,8 @@ import com.android.lofm.imagesdemo.util.ImageListener;
  */
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
 
-    private Context context;
     private final ImageListener imageListener;
+    private Context context;
     private Integer[] thumbIds;
 
     public ImageAdapter(Context context, ImageListener imageListener) {
@@ -40,12 +40,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(final ImageViewHolder holder, final int position) {
         holder.initialImage.setImageResource(thumbIds[position]);
         ViewCompat.setTransitionName(holder.initialImage, String.valueOf(position) + "_image");
-
-//        holder.initialImage.setLayoutParams(new RecyclerView.LayoutParams(250, 250));
-//        holder.initialImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        holder.initialImage.setPadding(10, 10, 10, 10);
-
         holder.initialImage.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 imageListener.onImageClicked(holder.initialImage, position);
