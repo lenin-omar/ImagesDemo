@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.lofm.api.GalleryAPI;
 import com.android.lofm.api.ui.ImageListener;
 import com.android.lofm.imagesdemo.R;
 import com.android.lofm.imagesdemo.adapter.ImageAdapter;
 import com.android.lofm.imagesdemo.presenter.GridPresenter;
-import com.android.lofm.imagesdemo.util.GalleryUtil;
 
 /**
  * Created by Omar F Martinez on 1/7/17.
@@ -50,7 +50,7 @@ public class GridFragment extends Fragment implements ImageListener {
         imageView.getLocationOnScreen(screenLocation);
         Bundle bundle = new Bundle();
         bundle.putInt(PACKAGE + ".image", thumbIds[position]);
-        GalleryUtil.replaceFragmentToContent(getActivity(), ImageDetailFragment.TAG, bundle, imageView, this);
+        GalleryAPI.getInstance(getActivity(), R.id.fragmentHolder).showExpandedImage(ImageDetailFragment.TAG, bundle, imageView);
     }
 
 }

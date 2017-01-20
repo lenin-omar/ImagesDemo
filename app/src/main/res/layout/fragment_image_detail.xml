@@ -1,15 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center_horizontal">
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/imageViewDetail"
         android:layout_width="@dimen/details_image_size"
         android:layout_height="@dimen/details_image_size"
         android:layout_margin="@dimen/details_top_spacing"
         android:scaleType="centerCrop"
-        android:transitionName="expandImage"
-        android:id="@+id/imageViewDetail"/>
+        android:transitionName="expandImage"/>
 
 </LinearLayout>

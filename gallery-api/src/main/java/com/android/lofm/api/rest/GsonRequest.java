@@ -20,47 +20,16 @@ import java.util.Map;
  */
 public class GsonRequest<T> extends Request<T> {
 
-    private final Gson gson = new Gson();
-    private Class<T> clazz;
-    private Map<String, String> headers;
-    private final Listener<T> listener;
-    private Object requestBody;
     private static final String PROTOCOL_CHARSET = "utf-8";
     /**
      * Content type for request.
      */
     private static final String PROTOCOL_CONTENT_TYPE = String.format("application/json; charset=%s", PROTOCOL_CHARSET);
-
-    /**
-     * Make a GET request and return a parsed object from JSON.
-     *
-     * @param url     URL of the request to make
-     * @param clazz   Relevant class object, for Gson's reflection
-     * @param headers Map of request headers
-     */
-    public GsonRequest(String url, Class<T> clazz, Map<String, String> headers, Listener<T> listener, ErrorListener errorListener) {
-        super(Method.GET, url, errorListener);
-        this.clazz = clazz;
-        this.headers = headers;
-        this.listener = listener;
-    }
-
-    /**
-     * @param method        Http request type. ie. Method.GET, Method.POST etc.
-     * @param url           The request url
-     * @param requestBody
-     * @param clazz
-     * @param headers
-     * @param listener
-     * @param errorListener
-     */
-    public GsonRequest(int method, String url, Object requestBody, Class<T> clazz, Map<String, String> headers, Listener<T> listener, ErrorListener errorListener) {
-        super(method, url, errorListener);
-        this.clazz = clazz;
-        this.headers = headers;
-        this.listener = listener;
-        this.requestBody = requestBody;
-    }
+    private final Gson gson = new Gson();
+    private final Listener<T> listener;
+    private Class<T> clazz;
+    private Map<String, String> headers;
+    private Object requestBody;
 
     /**
      * Make a specified Http Request and return a parsed object from JSON.
@@ -92,24 +61,6 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     protected void deliverResponse(T response) {
         listener.onResponse(response);
-    }
-
-    /**
-     * @deprecated Use {@link #getBodyContentType()}.
-     */
-    @Override
-    @Deprecated
-    public String getPostBodyContentType() {
-        return getBodyContentType();
-    }
-
-    /**
-     * @deprecated Use {@link #getBody()}.
-     */
-    @Override
-    @Deprecated
-    public byte[] getPostBody() {
-        return getBody();
     }
 
     @Override
