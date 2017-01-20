@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.lofm.api.ui.ImageListener;
 import com.android.lofm.imagesdemo.R;
-import com.android.lofm.imagesdemo.util.ImageListener;
 
 /**
  * Created by Omar F Martinez on 1/7/17.

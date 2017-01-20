@@ -1,4 +1,4 @@
-package com.android.lofm.imagesdemo.ui;
+package com.android.lofm.api.ui;
 
 import android.annotation.TargetApi;
 import android.os.Build;

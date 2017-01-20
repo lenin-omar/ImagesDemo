@@ -1,4 +1,4 @@
-package com.android.lofm.imagesdemo.rest;
+package com.android.lofm.api.rest;
 
 import android.content.Context;
 import android.graphics.Bitmap;

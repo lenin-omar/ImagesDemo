@@ -1,4 +1,4 @@
-package com.android.lofm.imagesdemo.util;
+package com.android.lofm.api.ui;
 
 import android.view.View;
 

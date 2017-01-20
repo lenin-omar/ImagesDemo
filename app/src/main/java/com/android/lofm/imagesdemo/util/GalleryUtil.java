@@ -9,9 +9,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.transition.Fade;
 import android.widget.ImageView;
 
+import com.android.lofm.api.ui.DetailsTransition;
 import com.android.lofm.imagesdemo.R;
 import com.android.lofm.imagesdemo.fragment.GridFragment;
-import com.android.lofm.imagesdemo.ui.DetailsTransition;
 
 /**
  * Created by Omar F Martinez on 1/7/17.

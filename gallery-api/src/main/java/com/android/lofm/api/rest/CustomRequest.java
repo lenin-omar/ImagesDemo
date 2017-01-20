@@ -1,4 +1,4 @@
-package com.android.lofm.imagesdemo.rest;
+package com.android.lofm.api.rest;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;

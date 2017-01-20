@@ -2,9 +2,9 @@ package com.android.lofm.imagesdemo.presenter;
 
 import android.content.Context;
 
+import com.android.lofm.api.rest.CustomRequest;
+import com.android.lofm.api.rest.VolleySingleton;
 import com.android.lofm.imagesdemo.R;
-import com.android.lofm.imagesdemo.rest.CustomRequest;
-import com.android.lofm.imagesdemo.rest.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
