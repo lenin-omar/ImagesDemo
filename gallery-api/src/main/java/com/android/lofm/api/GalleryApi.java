@@ -23,12 +23,25 @@ public class GalleryAPI {
     private FragmentManager fm;
     private FragmentTransaction ft;
 
+    /**
+     * Private constructor
+     *
+     * @param activity       The activity containing the gallery
+     * @param holderResource Frame holder of the activity
+     */
     private GalleryAPI(FragmentActivity activity, int holderResource) {
         this.activity = activity;
         this.holderResource = holderResource;
         fm = activity.getSupportFragmentManager();
     }
 
+    /**
+     * Returns a GalleryAPI instance
+     *
+     * @param activity       The activity containing the gallery
+     * @param holderResource Frame holder of the activity
+     * @return
+     */
     public static GalleryAPI getInstance(FragmentActivity activity, int holderResource) {
         if (galleryAPI == null) {
             galleryAPI = new GalleryAPI(activity, holderResource);
@@ -36,6 +49,12 @@ public class GalleryAPI {
         return galleryAPI;
     }
 
+    /**
+     * Shows the first fragment containing the gallery recycler view
+     *
+     * @param imageGridFragmentTag First fragment TAG
+     * @param extras               Bundle object
+     */
     public void showGridGallery(String imageGridFragmentTag, Bundle extras) {
         Fragment imageGridFragment = null;
         if (fm.findFragmentByTag(imageGridFragmentTag) == null) {
@@ -46,12 +65,25 @@ public class GalleryAPI {
         }
     }
 
+    /**
+     * Shows the first fragment containing the gallery recycler view
+     *
+     * @param imageGridFragment Fragment containing the gallery recycler view
+     * @param extras            Bundle object
+     */
     public void showGridGallery(Fragment imageGridFragment, Bundle extras) {
         ft = fm.beginTransaction();
         ft.add(holderResource, imageGridFragment);
         ft.commit();
     }
 
+    /**
+     * Shows the second fragment containing the expanded Image View
+     *
+     * @param expandedImageFragmentTag Second fragment TAG
+     * @param extras                   Bundle object
+     * @param expandedImageView        Image View that will show the expanded image
+     */
     public void showExpandedImage(String expandedImageFragmentTag, Bundle extras, ImageView expandedImageView) {
         ft = fm.beginTransaction().addSharedElement(expandedImageView, "expandImage");
         Fragment expandedImageFragment = Fragment.instantiate(activity, expandedImageFragmentTag, extras);
@@ -66,6 +98,13 @@ public class GalleryAPI {
         ft.commit();
     }
 
+    /**
+     * Shows the second fragment containing the expanded Image View
+     *
+     * @param expandedImageFragment Fragment containing the expanded Image View
+     * @param extras                Bundle object
+     * @param expandedImageView     Image View that will show the expanded image
+     */
     public void showExpandedImage(Fragment expandedImageFragment, Bundle extras, ImageView expandedImageView) {
         ft = fm.beginTransaction().addSharedElement(expandedImageView, "expandImage");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

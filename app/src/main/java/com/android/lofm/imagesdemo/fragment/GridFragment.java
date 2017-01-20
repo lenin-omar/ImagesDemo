@@ -31,8 +31,8 @@ public class GridFragment extends Fragment implements ImageListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_grid, container, false);
-        gridPresenter = new GridPresenter(getContext());
-        //gridPresenter.getImages("endpoint");
+        gridPresenter = new GridPresenter(getContext());    //This shows local images
+//        gridPresenter.getImages("endpoint");
         thumbIds = gridPresenter.getImages();
         //Setup recycler view and adapter
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
