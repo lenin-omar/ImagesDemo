@@ -2,15 +2,14 @@ package com.android.lofm.imagesdemo.presenter;
 
 import android.content.Context;
 
+import com.android.lofm.api.rest.GsonRequest;
+import com.android.lofm.api.rest.VolleySingleton;
 import com.android.lofm.imagesdemo.R;
-import com.android.lofm.imagesdemo.rest.CustomRequest;
-import com.android.lofm.imagesdemo.rest.VolleySingleton;
+import com.android.lofm.imagesdemo.model.ModelResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +18,7 @@ import java.util.Map;
  * Created by Omar F Martinez on 1/8/17.
  */
 
-public class GridPresenter implements Response.Listener<JSONObject>, Response.ErrorListener {
+public class GridPresenter implements Response.Listener<Object>, Response.ErrorListener {
 
     private Context context;
     private RequestQueue requestQueue;
@@ -35,9 +34,8 @@ public class GridPresenter implements Response.Listener<JSONObject>, Response.Er
 
     public void getImages(String url) {
         Map<String, String> headers = new HashMap<String, String>();
-        CustomRequest customRequest = new CustomRequest(Request.Method.GET, url, headers, this, this);
-        requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
-        requestQueue.add(customRequest);
+        GsonRequest request = new GsonRequest(Request.Method.GET, url, ModelResponse[].class, null, this, this);
+        VolleySingleton.getInstance(context).getRequestQueue().add(request);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class GridPresenter implements Response.Listener<JSONObject>, Response.Er
     }
 
     @Override
-    public void onResponse(JSONObject response) {
+    public void onResponse(Object response) {
         System.out.println("Response: " + response);
     }
 }

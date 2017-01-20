@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.lofm.api.GalleryAPI;
+import com.android.lofm.api.ui.ImageListener;
 import com.android.lofm.imagesdemo.R;
 import com.android.lofm.imagesdemo.adapter.ImageAdapter;
 import com.android.lofm.imagesdemo.presenter.GridPresenter;
-import com.android.lofm.imagesdemo.util.GalleryUtil;
-import com.android.lofm.imagesdemo.util.ImageListener;
 
 /**
  * Created by Omar F Martinez on 1/7/17.
@@ -31,8 +31,8 @@ public class GridFragment extends Fragment implements ImageListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_grid, container, false);
-        gridPresenter = new GridPresenter(getContext());
-        //gridPresenter.getImages("endpoint");
+        gridPresenter = new GridPresenter(getContext());    //This shows local images
+//        gridPresenter.getImages("endpoint");
         thumbIds = gridPresenter.getImages();
         //Setup recycler view and adapter
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -50,7 +50,7 @@ public class GridFragment extends Fragment implements ImageListener {
         imageView.getLocationOnScreen(screenLocation);
         Bundle bundle = new Bundle();
         bundle.putInt(PACKAGE + ".image", thumbIds[position]);
-        GalleryUtil.replaceFragmentToContent(getActivity(), ImageDetailFragment.TAG, bundle, imageView, this);
+        GalleryAPI.getInstance(getActivity(), R.id.fragmentHolder).showExpandedImage(ImageDetailFragment.TAG, bundle, imageView);
     }
 
 }

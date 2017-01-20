@@ -24,8 +24,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
-                  android:screenOrientation="sensorPortrait">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait">
         </activity>
     </application>
 

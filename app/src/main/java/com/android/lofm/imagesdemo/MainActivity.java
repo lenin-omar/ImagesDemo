@@ -3,7 +3,8 @@ package com.android.lofm.imagesdemo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.android.lofm.imagesdemo.util.GalleryUtil;
+import com.android.lofm.api.GalleryAPI;
+import com.android.lofm.imagesdemo.fragment.GridFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,6 +12,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        GalleryUtil.showGallery(this, null);
+        GalleryAPI.getInstance(this, R.id.fragmentHolder).showGridGallery(GridFragment.TAG, null);
     }
 }
